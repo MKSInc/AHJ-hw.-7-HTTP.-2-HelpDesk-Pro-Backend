@@ -13,6 +13,6 @@
 
 ---
 
-## 7.2 HelpDesk: Frontend (Backend)
+## 7.2 "HelpDesk: Frontend" (Backend)
 
 ### Описание задания во [Frontend](https://github.com/MKSInc/AHJ-hw.-7-HTTP.-2-HelpDesk-Pro-Frontend) части.
