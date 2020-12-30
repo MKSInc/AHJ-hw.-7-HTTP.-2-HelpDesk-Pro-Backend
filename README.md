@@ -1,4 +1,4 @@
-### [Heroku server](https://ahj-7-1-helpdesk-pro.herokuapp.com)
+### [Heroku server](https://ahj-7-2-helpdesk-pro.herokuapp.com)
 # 7. Домашнее задание к лекции «Работа с HTTP»
 
 Правила сдачи задания:
