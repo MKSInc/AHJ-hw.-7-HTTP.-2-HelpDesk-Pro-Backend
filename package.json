@@ -1,0 +1,34 @@
+{
+  "name": "ahj-hw.-7-http.-2-helpdesk-pro-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "prestart": "npm install",
+    "start": "forever -a server.js",
+    "watch": "forever -a -w server.js",
+    "lint": "eslint ."
+  },
+  "engines": {
+    "node": "11.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MKSInc/AHJ-hw.-7-HTTP.-2-HelpDesk-Pro-Backend.git"
+  },
+  "author": "Maksim <pyshkov.maksim@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MKSInc/AHJ-hw.-7-HTTP.-2-HelpDesk-Pro-Backend/issues"
+  },
+  "homepage": "https://github.com/MKSInc/AHJ-hw.-7-HTTP.-2-HelpDesk-Pro-Backend#readme",
+  "dependencies": {
+    "forever": "^3.0.4",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
