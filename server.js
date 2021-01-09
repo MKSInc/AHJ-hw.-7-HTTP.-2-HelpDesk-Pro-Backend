@@ -39,9 +39,11 @@ app.use(async (ctx) => {
   switch (method) {
     case 'allTickets': response = ticketsDB.getTickets();
       break;
-    case 'ticketById': response = ticketsDB.getTicketFull(ctx.request.query.id);
+    case 'ticketById': response = ticketsDB.getTicketFull(ctx.request.query);
       break;
     case 'createTicket': response = 'Ticket created'; ticketsDB.createTicket(ctx.request.body);
+      break;
+    case 'changeStatus': response = ticketsDB.changeStatus(ctx.request.body);
       break;
     default: response = `Unknown method '${method}' in request parameters`; ctx.status = 404;
   }

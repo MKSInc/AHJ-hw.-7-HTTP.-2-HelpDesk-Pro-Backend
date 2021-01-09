@@ -18,10 +18,19 @@ class TicketsDB {
     return JSON.stringify(this.tickets);
   }
 
-  getTicketFull(id) {
+  getTicketFull({ id }) {
     return JSON.stringify(
       new TicketFull({ ...this.tickets[id], description: this.ticketsDescription.get(id) }),
     );
+  }
+
+  changeStatus({ id }) {
+    const ticket = this.tickets.find((el) => el.id === id);
+
+    if (ticket.status === 'todo') ticket.status = 'done';
+    else ticket.status = 'todo';
+
+    return JSON.stringify({ status: ticket.status });
   }
 }
 
