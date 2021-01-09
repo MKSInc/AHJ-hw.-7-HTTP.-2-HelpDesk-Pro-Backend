@@ -15,11 +15,13 @@ class TicketsDB {
   }
 
   getTickets() {
-    return this.tickets;
+    return JSON.stringify(this.tickets);
   }
 
   getTicketFull(id) {
-    return new TicketFull({ ...this.tickets[id], description: this.ticketsDescription.get(id) });
+    return JSON.stringify(
+      new TicketFull({ ...this.tickets[id], description: this.ticketsDescription.get(id) }),
+    );
   }
 }
 

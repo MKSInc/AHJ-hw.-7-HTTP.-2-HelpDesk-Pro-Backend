@@ -11,7 +11,7 @@ ticketsDB.createTicket({
 
 ticketsDB.createTicket({
   name: 'Переустановить Windows',
-  status: 'todo',
+  status: 'done',
   description: 'Описание для переустановки Windows.',
 });
 
