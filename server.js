@@ -14,7 +14,7 @@ ticketsDB.createTicket({
   description: 'Описание для переустановки Windows.',
 });
 
-ticketsDB.changeStatus({ id: '1' });
+ticketsDB.changeStatus({ id: ticketsDB.tickets[1].id });
 
 const Koa = require('koa');
 const koaBody = require('koa-body');

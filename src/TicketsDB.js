@@ -1,3 +1,4 @@
+const { nanoid } = require('nanoid');
 const { Ticket, TicketFull } = require('./Ticket');
 
 class TicketsDB {
@@ -7,7 +8,7 @@ class TicketsDB {
   }
 
   createTicket({ name, description }) {
-    const id = `${this.tickets.length}`;
+    const id = nanoid();
     const ticket = new Ticket({
       id, name, created: new Date(),
     });
@@ -23,7 +24,8 @@ class TicketsDB {
   }
 
   getTicketFull({ id }) {
-    return new TicketFull({ ...this.tickets[id], description: this.ticketsDescription.get(id) });
+    const ticket = this.tickets.find((el) => el.id === id);
+    return new TicketFull({ ...ticket, description: this.ticketsDescription.get(id) });
   }
 
   changeStatus({ id }) {
@@ -46,6 +48,8 @@ class TicketsDB {
   deleteTicket({ id }) {
     this.tickets = this.tickets.filter((ticket) => ticket.id !== id);
     this.ticketsDescription.delete(id);
+    console.log(this.tickets);
+    console.log(this.ticketsDescription);
 
     return 'Ticket deleted';
   }
