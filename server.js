@@ -3,17 +3,18 @@ const { TicketsDB } = require('./src/TicketsDB');
 
 const ticketsDB = new TicketsDB();
 
+// Тестовые заявки
 ticketsDB.createTicket({
   name: 'Поменять краску в принтере',
-  status: 'todo',
   description: 'Описание для замены краски в принтере.',
 });
 
 ticketsDB.createTicket({
   name: 'Переустановить Windows',
-  status: 'done',
   description: 'Описание для переустановки Windows.',
 });
+
+ticketsDB.changeStatus({ id: '1' });
 
 const Koa = require('koa');
 const koaBody = require('koa-body');
@@ -34,21 +35,28 @@ app.use(async (ctx) => {
   if (ctx.request.method === 'GET') ({ method } = ctx.request.query);
   else if (ctx.request.method === 'POST') ({ method } = ctx.request.body);
 
-  let response;
+  const response = {
+    success: true,
+    data: '',
+  };
 
   switch (method) {
-    case 'allTickets': response = ticketsDB.getTickets();
+    case 'allTickets': response.data = ticketsDB.getTickets();
       break;
-    case 'ticketById': response = ticketsDB.getTicketFull(ctx.request.query);
+    case 'ticketById': response.data = ticketsDB.getTicketFull(ctx.request.query);
       break;
-    case 'createTicket': response = 'Ticket created'; ticketsDB.createTicket(ctx.request.body);
+    case 'createTicket': response.data = ticketsDB.createTicket(ctx.request.body);
       break;
-    case 'changeStatus': response = ticketsDB.changeStatus(ctx.request.body);
+    case 'changeStatus': response.data = ticketsDB.changeStatus(ctx.request.body);
       break;
-    default: response = `Unknown method '${method}' in request parameters`; ctx.status = 404;
+    case 'updateTicket': response.data = ticketsDB.updateTicket(ctx.request.body);
+      break;
+    default:
+      response.success = false;
+      response.data = `Unknown method '${method}' in request parameters`;
   }
 
-  ctx.body = response;
+  ctx.body = JSON.stringify(response);
 });
 
 // eslint-disable-next-line no-console

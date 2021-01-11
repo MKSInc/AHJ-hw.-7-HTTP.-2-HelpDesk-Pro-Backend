@@ -1,11 +1,11 @@
 // eslint-disable-next-line max-classes-per-file
 class Ticket {
   constructor({
-    id, name, status, created,
+    id, name, created,
   }) {
     this.id = id;
     this.name = name;
-    this.status = status;
+    this.status = 'todo';
     this.created = created;
   }
 }
@@ -15,8 +15,9 @@ class TicketFull extends Ticket {
     id, name, status, created, description,
   }) {
     super({
-      id, name, status, created,
+      id, name, created,
     });
+    this.status = status;
     this.description = description;
   }
 }

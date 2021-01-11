@@ -6,22 +6,24 @@ class TicketsDB {
     this.ticketsDescription = new Map();
   }
 
-  createTicket({ name, status, description }) {
+  createTicket({ name, description }) {
     const id = `${this.tickets.length}`;
-    this.tickets.push(new Ticket({
-      id, name, status, created: new Date(),
-    }));
+    const ticket = new Ticket({
+      id, name, created: new Date(),
+    });
+
+    this.tickets.push(ticket);
     this.ticketsDescription.set(id, description);
+
+    return ticket;
   }
 
   getTickets() {
-    return JSON.stringify(this.tickets);
+    return this.tickets;
   }
 
   getTicketFull({ id }) {
-    return JSON.stringify(
-      new TicketFull({ ...this.tickets[id], description: this.ticketsDescription.get(id) }),
-    );
+    return new TicketFull({ ...this.tickets[id], description: this.ticketsDescription.get(id) });
   }
 
   changeStatus({ id }) {
@@ -30,7 +32,15 @@ class TicketsDB {
     if (ticket.status === 'todo') ticket.status = 'done';
     else ticket.status = 'todo';
 
-    return JSON.stringify({ status: ticket.status });
+    return ticket.status;
+  }
+
+  updateTicket({ id, name, description }) {
+    this.tickets.find((el) => el.id === id)
+      .name = name;
+    this.ticketsDescription.set(id, description);
+
+    return this.getTicketFull({ id });
   }
 }
 
