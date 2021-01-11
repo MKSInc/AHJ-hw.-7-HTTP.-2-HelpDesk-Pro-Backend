@@ -42,6 +42,13 @@ class TicketsDB {
 
     return this.getTicketFull({ id });
   }
+
+  deleteTicket({ id }) {
+    this.tickets = this.tickets.filter((ticket) => ticket.id !== id);
+    this.ticketsDescription.delete(id);
+
+    return 'Ticket deleted';
+  }
 }
 
 module.exports = {

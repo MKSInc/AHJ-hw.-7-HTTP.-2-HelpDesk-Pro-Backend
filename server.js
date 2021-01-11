@@ -51,6 +51,8 @@ app.use(async (ctx) => {
       break;
     case 'updateTicket': response.data = ticketsDB.updateTicket(ctx.request.body);
       break;
+    case 'deleteTicket': response.data = ticketsDB.deleteTicket(ctx.request.body);
+      break;
     default:
       response.success = false;
       response.data = `Unknown method '${method}' in request parameters`;
